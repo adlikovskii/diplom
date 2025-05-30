@@ -1,0 +1,98 @@
+shop: МВидео
+categories:
+  - id: 300
+    name: Ноутбуки
+  - id: 301
+    name: Игровые консоли
+  - id: 302
+    name: Наушники
+  - id: 303
+    name: Смарт-часы
+
+goods:
+  - id: 5001001
+    category: 300
+    model: dell/xps-13-9310
+    name: Ноутбук Dell XPS 13 9310 13.4" FHD+
+    price: 120000
+    price_rrc: 125000
+    quantity: 10
+    parameters:
+      Диагональ_дюймы: 13.4
+      Разрешение_пиксели: 1920x1200
+      Процессор: Intel Core i7-1165G7
+      Оперативная_память_Гб: 16
+      Накопитель_GB: 512
+      Цвет: серебристый
+
+  - id: 5001002
+    category: 301
+    model: sony/playstation-5
+    name: Игровая консоль Sony PlayStation 5
+    price: 50000
+    price_rrc: 54990
+    quantity: 7
+    parameters:
+      Тип: игровая консоль
+      Поддержка_4K: true
+      Цвет: белый
+
+  - id: 5001003
+    category: 301
+    model: microsoft/xbox-series-x
+    name: Игровая консоль Microsoft Xbox Series X
+    price: 48000
+    price_rrc: 49990
+    quantity: 5
+    parameters:
+      Тип: игровая консоль
+      Поддержка_4K: true
+      Цвет: черный
+
+  - id: 5001004
+    category: 302
+    model: bose/quietcomfort-45
+    name: Наушники Bose QuietComfort 45
+    price: 18000
+    price_rrc: 19990
+    quantity: 15
+    parameters:
+      Тип: накладные
+      Активное_шумоподавление: true
+      Цвет: черный
+
+  - id: 5001005
+    category: 302
+    model: sony/wh-1000xm4
+    name: Наушники Sony WH-1000XM4
+    price: 19000
+    price_rrc: 21000
+    quantity: 12
+    parameters:
+      Тип: накладные
+      Активное_шумоподавление: true
+      Цвет: серебристый
+
+  - id: 5001006
+    category: 303
+    model: apple/watch-series-7
+    name: Смарт-часы Apple Watch Series 7
+    price: 35000
+    price_rrc: 38000
+    quantity: 8
+    parameters:
+      Диагональ_дюймы: 1.9
+      Водозащита: true
+      Цвет: черный
+
+  - id: 5001007
+    category: 303
+    model: samsung/galaxy-watch-4
+    name: Смарт-часы Samsung Galaxy Watch 4
+    price: 27000
+    price_rrc: 30000
+    quantity: 10
+    parameters:
+      Диагональ_дюймы: 1.4
+      Водозащита: true
+      Цвет: серебристый
