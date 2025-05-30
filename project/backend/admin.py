@@ -7,7 +7,7 @@ from .models import (
     ProductInfo,
     ProductParameter,
     Parameter,
-    Category
+    Category,
 )
 
 # Регистрируем модели для отображения в админке
@@ -19,7 +19,7 @@ models_to_register = [
     ProductInfo,
     ProductParameter,
     Parameter,
-    Category
+    Category,
 ]
 
 for model in models_to_register:

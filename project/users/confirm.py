@@ -11,16 +11,18 @@ def send_email(email, token, recipient):
         token (str): Токен подтверждения.
         recipient (list): Список получателей письма.
     """
-    confirmation_url = f'http://127.0.0.1:8000/api/v1/confirm_email/{token}/{email}'
+    confirmation_url = (
+        f"http://127.0.0.1:8000/api/v1/confirm_email/{token}/{email}"
+    )
     message_body = f"""
         Для завершения регистрации, пожалуйста, перейдите по ссылке:
         <a href="{confirmation_url}">Подтвердить email</a>
     """
     email_message = EmailMessage(
-        'Регистрация на retail-сайте',
+        "Регистрация на retail-сайте",
         message_body,
         settings.EMAIL_HOST_USER,
-        recipient
+        recipient,
     )
     email_message.content_subtype = "html"
     email_message.send()
@@ -35,7 +37,7 @@ def send_confirmed_order(order_info, recipient):
         recipient (list): Список email-адресов клиента.
     """
     products_description = ""
-    for product_name, details in order_info['products'].items():
+    for product_name, details in order_info["products"].items():
         products_description += (
             f"{product_name} x {details['quantity']}, "
             f"итоговая стоимость: {details['total price']}, "
@@ -63,20 +65,20 @@ def send_confirmed_order(order_info, recipient):
 
     # Письмо клиенту
     user_email = EmailMessage(
-        'Подтверждение заказа на retail-сайте',
+        "Подтверждение заказа на retail-сайте",
         user_message,
         settings.EMAIL_HOST_USER,
-        recipient
+        recipient,
     )
     user_email.content_subtype = "html"
     user_email.send()
 
     # Письмо администратору
     admin_email = EmailMessage(
-        'Подтверждён заказ на retail-сайте',
+        "Подтверждён заказ на retail-сайте",
         admin_message,
         settings.EMAIL_HOST_USER,
-        [settings.EMAIL_HOST_USER]
+        [settings.EMAIL_HOST_USER],
     )
     admin_email.content_subtype = "html"
     admin_email.send()

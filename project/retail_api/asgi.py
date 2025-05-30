@@ -11,7 +11,7 @@ import os
 from django.core.asgi import get_asgi_application
 
 # Устанавливаем переменную окружения с настройками Django по умолчанию для ASGI
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diplom.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "diplom.settings")
 
 # Получаем экземпляр ASGI-приложения
 application = get_asgi_application()

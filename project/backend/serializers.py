@@ -7,13 +7,13 @@ from .models import Order, OrderItem, Shop, Product, ProductInfo, Contact
 class ShopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shop
-        fields = ('id', 'name')
+        fields = ("id", "name")
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name')
+        fields = ("id", "name")
 
 
 class ListItemsSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class ListItemsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ('order', 'product', 'quantity', 'shop')
+        fields = ("order", "product", "quantity", "shop")
 
 
 class GetOrderSerializer(serializers.ModelSerializer):
@@ -31,11 +31,18 @@ class GetOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'status', 'dt', 'contact', 'orderitem_set', 'total_sum')
+        fields = (
+            "id",
+            "status",
+            "dt",
+            "contact",
+            "orderitem_set",
+            "total_sum",
+        )
 
     def get_total_sum(self, obj):
-        result = obj.orderitem_set.aggregate(sum_value=Sum('total_price'))
-        return result.get('sum_value') or 0
+        result = obj.orderitem_set.aggregate(sum_value=Sum("total_price"))
+        return result.get("sum_value") or 0
 
 
 class ProductInfoSerializer(serializers.ModelSerializer):
@@ -44,7 +51,7 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductInfo
-        fields = ('model', 'quantity', 'price_rrc', 'shop', 'product')
+        fields = ("model", "quantity", "price_rrc", "shop", "product")
 
 
 class AddProductSerializer(serializers.ModelSerializer):
@@ -52,7 +59,7 @@ class AddProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id',)
+        fields = ("id",)
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -60,21 +67,23 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ('order', 'product', 'quantity', 'shop')
+        fields = ("order", "product", "quantity", "shop")
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    order_items = OrderItemSerializer(many=True, source='orderitem_set')
+    order_items = OrderItemSerializer(many=True, source="orderitem_set")
 
     class Meta:
         model = Order
-        fields = ('contact', 'order_items')
+        fields = ("contact", "order_items")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        user_context = self.context.get('user')
+        user_context = self.context.get("user")
         if user_context:
-            self.fields['contact'].queryset = Contact.objects.filter(user=user_context)
+            self.fields["contact"].queryset = Contact.objects.filter(
+                user=user_context
+            )
 
 
 class ListOrderSerializer(serializers.ModelSerializer):
@@ -83,16 +92,16 @@ class ListOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'status', 'dt', 'total_sum')
+        fields = ("id", "status", "dt", "total_sum")
 
     def get_total_sum(self, obj):
-        data = obj.orderitem_set.aggregate(total=Sum('total_price'))
-        return data.get('total') or 0
+        data = obj.orderitem_set.aggregate(total=Sum("total_price"))
+        return data.get("total") or 0
 
 
 class ConfirmOrderSerializer(serializers.ModelSerializer):
-    status = serializers.ChoiceField(choices=(('confirm', 'Подтвердить'),))
+    status = serializers.ChoiceField(choices=(("confirm", "Подтвердить"),))
 
     class Meta:
         model = Order
-        fields = ('id', 'status')
+        fields = ("id", "status")

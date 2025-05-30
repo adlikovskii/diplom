@@ -13,7 +13,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 # Устанавливаем переменную окружения с настройками Django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diplom.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "diplom.settings")
 
 # Получаем объект WSGI-приложения для сервера
 application = get_wsgi_application()
